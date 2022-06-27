@@ -68,7 +68,7 @@
           </li>
           <li>
             <router-link
-              to="/"
+              to="/faqs"
               :class="{ 'text-secondary': $route.name == 'faqs' }"
               >FAQs</router-link
             >

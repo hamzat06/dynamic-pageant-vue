@@ -1,10 +1,5 @@
 <template>
-  <div
-    class="w-full h-screen bg-no-repeat bg-cover"
-    style="
-      background-image: url('https://image.shutterstock.com/image-photo/face-art-woman-black-yellow-600w-1958076946.jpg');
-    "
-  >
+  <div class="w-full h-screen bg-no-repeat bg-cover" id="hero">
     <div class="h-full w-full bg-primary/10 flex items-center">
       <div class="container max-w-7xl mx-auto p-5">
         <div class="max-w-md md:max-w-lg">
@@ -36,3 +31,9 @@ export default {
   name: "HomeView",
 };
 </script>
+
+<style>
+#hero {
+  background-image: url("https://image.shutterstock.com/image-photo/face-art-woman-black-yellow-600w-1958076946.jpg");
+}
+</style>
