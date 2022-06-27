@@ -8,7 +8,7 @@
       />
     </div>
     <p class="text-xl text-primary text-center font-bold">
-      Register an account!
+      Register an account"
     </p>
     <a
       href="#"

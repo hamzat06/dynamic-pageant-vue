@@ -3,7 +3,7 @@
     <div class="container max-w-7xl mx-auto text-secondary py-20 px-5">
       <h1 class="text-3xl md:text-4xl font-bold mb-10">ABOUT US</h1>
       <div
-        class="space-y-5 md:space-y-8 text-base md:text-lg font-semibold leading-relaxed md:leading-loose"
+        class="space-y-5 font-semibold md:space-y-8 text-base md:text-lg leading-relaxed md:leading-loose text-white"
       >
         <p>
           Dynamic Pageant is an indigenous reality television series in which a
@@ -46,12 +46,12 @@
             <h2 class="font-bold text-2xl md:text-3xl mb-10 hidden md:block">
               WHY WE EXIST
             </h2>
-            <p class="mb-5 md:mb-8">
+            <p class="mb-5 md:mb-8 text-white">
               The modeling/pageant industry in Africa is in upswing as more and
               more youths begin to see it as a visible entry point into the
               greater creative industry.
             </p>
-            <p>
+            <p class="text-white">
               As demand for models & pageants rises there will be a need for
               modeling agencies out of Africa to become better-organized, and
               create contests that have a wider audience reach.
@@ -59,10 +59,10 @@
           </div>
         </div>
       </div>
-      <div
-        class="text-secondary flex flex-col md:flex-row-reverse py-20 md:py-0"
-      >
-        <h2 class="font-bold text-3xl mb-10 md:hidden text-center">
+      <div class="text-white flex flex-col md:flex-row-reverse py-20 md:py-0">
+        <h2
+          class="font-bold text-secondary text-3xl mb-10 md:hidden text-center"
+        >
           OUR VISION
         </h2>
         <div class="md:basis-1/2 px-10 md:px-0">
@@ -75,7 +75,9 @@
           <div
             class="text-base md:text-lg font-semibold p-10 leading-relaxed md:leading-loose"
           >
-            <h2 class="font-bold text-2xl md:text-3xl mb-10 hidden md:block">
+            <h2
+              class="font-bold text-secondary text-2xl md:text-3xl mb-10 hidden md:block"
+            >
               OUR VISION
             </h2>
             <p class="mb-5 md:mb-8">
@@ -124,8 +126,8 @@
           </div>
         </div>
       </div>
-      <div class="text-secondary flex flex-col md:flex-row py-20 md:py-0">
-        <h2 class="font-bold text-3xl mb-10 md:hidden text-center">
+      <div class="text-white flex flex-col md:flex-row py-20 md:py-0">
+        <h2 class="font- text-secondary text-3xl mb-10 md:hidden text-center">
           OUR GREEN INITIATIVE
         </h2>
         <div class="md:basis-1/2 px-10 md:px-0">
@@ -139,7 +141,7 @@
             class="text-base md:text-lg font-semibold p-10 leading-relaxed md:leading-loose"
           >
             <div class="mb-10 hidden md:block">
-              <h2 class="font-bold text-2xl md:text-3xl mb-2">
+              <h2 class="font-bold text-secondary text-2xl md:text-3xl mb-2">
                 OUR GREEN INITIATIVE
               </h2>
               <p class="text-base">
@@ -188,10 +190,10 @@
           </div>
         </div>
       </div>
-      <div
-        class="text-secondary flex flex-col md:flex-row-reverse py-20 md:py-0"
-      >
-        <h2 class="font-bold text-3xl mb-10 md:hidden text-center">
+      <div class="text-white flex flex-col md:flex-row-reverse py-20 md:py-0">
+        <h2
+          class="font-bold text-secondary text-3xl mb-10 md:hidden text-center"
+        >
           TARGET AUDIENCE
         </h2>
         <div class="md:basis-1/2 px-10 md:px-0">
@@ -205,7 +207,7 @@
             class="text-base md:text-lg font-semibold p-10 leading-relaxed md:leading-loose"
           >
             <div class="mb-10 hidden md:block">
-              <h2 class="font-bold text-2xl md:text-3xl mb-3">
+              <h2 class="font-bold text-secondary text-2xl md:text-3xl mb-3">
                 TARGET AUDIENCE
               </h2>
               <p class="text-base">

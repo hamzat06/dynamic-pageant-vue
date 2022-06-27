@@ -41,6 +41,26 @@ const router = createRouter({
       name: "about",
       component: () => import("../views/AboutView.vue"),
     },
+    {
+      path: "/contestants",
+      name: "contestants",
+      component: () => import("../views/ContestantView.vue"),
+    },
+    {
+      path: "/judges",
+      name: "judges",
+      component: () => import("../views/JudgeView.vue"),
+    },
+    {
+      path: "/teams",
+      name: "teams",
+      component: () => import("../views/TeamView.vue"),
+    },
+    {
+      path: "/faqs",
+      name: "faqs",
+      component: () => import("../views/FaqView.vue"),
+    },
   ],
 });
 

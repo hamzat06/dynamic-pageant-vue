@@ -1,10 +1,12 @@
 <template>
   <nav
-    class="bg-primary w-full"
-    :class="{ 'fixed top-0 left-0': $route.name === 'home' }"
+    class="bg-primary w-full text-white"
+    :class="{
+      'fixed top-0 left-0 bg-transparent': $route.name === 'home',
+    }"
   >
     <div
-      class="container max-w-7xl mx-auto flex justify-between items-center py-2 text-secondary"
+      class="container max-w-7xl mx-auto flex justify-between items-center py-2"
     >
       <router-link to="/">
         <img alt="" src="@/assets/logo.png" class="w-48 h-48" />
@@ -13,23 +15,70 @@
       <div>
         <ul class="flex space-x-10 text-lg font-semibold">
           <li>
-            <router-link to="/">Home</router-link>
+            <router-link
+              to="/"
+              :class="{ 'text-secondary': $route.name == 'home' }"
+              >Home</router-link
+            >
           </li>
           <li>
-            <router-link to="/">Contestants</router-link>
+            <router-link
+              to="/contestants"
+              :class="{ 'text-secondary': $route.name == 'contestants' }"
+              >Contestants</router-link
+            >
           </li>
           <li>
-            <a>Mentors</a>
-            <!-- <ul>
-              <li><a>Judges</a></li>
-              <li><a>Teams</a></li>
-            </ul> -->
+            <a
+              class="cursor-pointer flex items-center"
+              @click="dropToggled = !dropToggled"
+              ><span>Mentors</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-4 h-4 ml-2"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
+                /></svg
+            ></a>
+            <ul
+              class="absolute py-2 space-y-2 bg-lightprimary w-32 md:-ml-5 text-center rounded-lg"
+              v-if="dropToggled"
+            >
+              <li>
+                <router-link
+                  to="judges"
+                  class="hover:bg-white hover:text-primary px-1 py-2 rounded-lg block"
+                  @click="dropToggled = false"
+                  >Judges</router-link
+                >
+              </li>
+              <li>
+                <router-link
+                  to="/teams"
+                  class="hover:bg-white hover:text-primary px-1 py-2 rounded-lg block"
+                  @click="dropToggled = false"
+                  >Teams</router-link
+                >
+              </li>
+            </ul>
           </li>
           <li>
-            <router-link to="/">FAQs</router-link>
+            <router-link
+              to="/"
+              :class="{ 'text-secondary': $route.name == 'faqs' }"
+              >FAQs</router-link
+            >
           </li>
           <li>
-            <router-link to="/about">About</router-link>
+            <router-link
+              to="/about"
+              :class="{ 'text-secondary': $route.name == 'about' }"
+              >About</router-link
+            >
           </li>
           <li>
             <router-link
@@ -47,5 +96,8 @@
 <script>
 export default {
   name: "NavbarComponent",
+  data: () => ({
+    dropToggled: false,
+  }),
 };
 </script>

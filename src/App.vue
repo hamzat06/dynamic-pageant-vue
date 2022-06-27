@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col justify-between">
+  <div class="flex flex-col justify-between min-h-screen bg-primary">
     <NavbarComponent />
     <div class="grow">
       <router-view />
