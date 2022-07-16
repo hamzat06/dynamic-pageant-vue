@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="variant === 'full'"
-    class="bg-lightprimary flex items-center h-96 hover:shadow-lg hover:shadow-secondary/50"
+    class="bg-lightprimary flex items-center h-96 hover:shadow-lg hover:shadow-secondary/50 cursor-pointer"
   >
     <div class="mx-auto p-5 text-secondary">
       <svg
@@ -19,7 +19,31 @@
       </svg>
     </div>
   </div>
-  <div class="max-w-64 bg-lightprimary" v-else>
+  <div
+    class="max-w-64 bg-lightprimary relative cursor-pointer"
+    @click="$emit('viewProfile')"
+    v-else
+  >
+    <div
+      class="card-overlay text-center absolute w-full h-full bg-secondary/50 text-red-600"
+      v-if="evicted"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-full w-full"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        strokeWidth="{2}"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M6 18L18 6M6 6l12 12"
+        />
+      </svg>
+      <h1 class="text-4xl text-white font-bold">Evicted!</h1>
+    </div>
     <div class="card-image">
       <img
         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShq3eZU1DeWT1zqe5TfmNeRHaHsNuN3QQEmA&usqp=CAU"
@@ -38,6 +62,7 @@ export default {
   name: "CardComponent",
   props: {
     variant: String,
+    evicted: Boolean,
   },
 };
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="container max-w-7xl mx-auto text-white">
+  <div class="container max-w-7xl px-5 mx-auto text-white">
     <h1 class="text-4xl text-secondary font-bold text-center mb-10 md:mb-20">
       Judges
     </h1>

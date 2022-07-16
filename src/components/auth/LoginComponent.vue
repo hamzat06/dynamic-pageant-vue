@@ -53,6 +53,7 @@
         placeholder="johndoe@email.com"
         aria-label="email"
         autocomplete="email"
+        v-model="userData.email"
       />
     </div>
     <div class="mt-4">
@@ -68,11 +69,13 @@
         placeholder="password"
         aria-label="password"
         autocomplete="password"
+        v-model="userData.password"
       />
     </div>
     <div class="mt-8">
       <button
         class="bg-primary text-white font-bold py-2 px-4 w-full rounded hover:bg-lightprimary"
+        @click="login"
       >
         Login
       </button>
@@ -86,3 +89,40 @@
     </div>
   </div>
 </template>
+
+<script>
+import { signInWithEmailAndPassword } from "@firebase/auth";
+import { auth } from "../../firebase";
+
+export default {
+  name: "LoginComponent",
+  data: () => ({
+    userData: {
+      email: "",
+      password: "",
+    },
+  }),
+  methods: {
+    login() {
+      this.$store.dispatch("startLoader");
+      signInWithEmailAndPassword(
+        auth,
+        this.userData.email,
+        this.userData.password
+      )
+        .then((userCredential) => {
+          // Signed in
+          this.$store.dispatch("setCurrentUser", userCredential.user);
+          this.$router.push("/dashboard");
+          this.$store.dispatch("dataAlert", "Sign in successful");
+          this.$store.dispatch("setAlertType", "success");
+        })
+        .catch((error) => {
+          this.$store.dispatch("dataAlert", error.message);
+          this.$store.dispatch("setAlertType", "error");
+        })
+        .finally(() => this.$store.dispatch("stopLoader"));
+    },
+  },
+};
+</script>

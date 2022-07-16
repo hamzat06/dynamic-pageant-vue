@@ -5,19 +5,20 @@
       'fixed top-0 left-0 bg-transparent': $route.name === 'home',
     }"
   >
-    <div
-      class="container max-w-7xl mx-auto flex justify-between items-center py-2"
-    >
+    <div class="container max-w-7xl mx-auto flex justify-between items-center py-2">
       <router-link to="/">
-        <img alt="" src="@/assets/logo.png" class="w-48 h-48" />
+        <img
+          alt=""
+          src="@/assets/logo.png"
+          class="w-32 h-32 md:w-48 md:h-48"
+          :class="{ 'w-32 h-32': $route.name === 'dashboard' }"
+        />
       </router-link>
 
-      <div>
+      <div class="hidden lg:block">
         <ul class="flex space-x-10 text-lg font-semibold">
           <li>
-            <router-link
-              to="/"
-              :class="{ 'text-secondary': $route.name == 'home' }"
+            <router-link to="/" :class="{ 'text-secondary': $route.name == 'home' }"
               >Home</router-link
             >
           </li>
@@ -66,24 +67,35 @@
               </li>
             </ul>
           </li>
-          <li>
+          <li v-if="authIsReady && isLoggedIn">
             <router-link
-              to="/faqs"
-              :class="{ 'text-secondary': $route.name == 'faqs' }"
+              to="/dashboard"
+              :class="{ 'text-secondary': $route.name == 'dashboard' }"
+              >Dashboard</router-link
+            >
+          </li>
+          <li>
+            <router-link to="/faqs" :class="{ 'text-secondary': $route.name == 'faqs' }"
               >FAQs</router-link
             >
           </li>
           <li>
-            <router-link
-              to="/about"
-              :class="{ 'text-secondary': $route.name == 'about' }"
+            <router-link to="/about" :class="{ 'text-secondary': $route.name == 'about' }"
               >About</router-link
             >
           </li>
-          <li>
+          <li v-if="isLoggedIn">
+            <a
+              class="btn border-red-700 bg-red-700 text-white font-semibold hover:bg-red-800"
+              @click="logout()"
+              >{{ this.$store.state.currentContestant.email && "Log Out" }}</a
+            >
+          </li>
+          <li v-else>
             <router-link
               to="/auth"
               class="btn border-secondary bg-secondary text-primary font-semibold hover:bg-yellow-500"
+              @click="$router.push('/auth')"
               >Sign In</router-link
             >
           </li>
@@ -94,10 +106,38 @@
 </template>
 
 <script>
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase";
+
 export default {
   name: "NavbarComponent",
   data: () => ({
     dropToggled: false,
   }),
+  computed: {
+    authIsReady() {
+      return this.$store.getters.getAuthIsReady;
+    },
+    isLoggedIn() {
+      return this.$store.getters.getLoggedInState;
+    },
+  },
+  methods: {
+    async logout() {
+      this.$store.dispatch("startLoader");
+      signOut(auth)
+        .then(() => {
+          this.$store.dispatch("clearCurrentUser");
+          this.$router.push("/");
+          this.$store.dispatch("dataAlert", "Successfully logged out");
+          this.$store.dispatch("setAlertType", "success");
+        })
+        .catch((error) => {
+          this.$store.dispatch("dataAlert", error);
+          this.$store.dispatch("setAlertType", "error");
+        })
+        .finally(() => this.$store.dispatch("stopLoader"));
+    },
+  },
 };
 </script>

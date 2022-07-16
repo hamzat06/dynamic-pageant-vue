@@ -1,6 +1,8 @@
 <template>
-  <div class="w-full">
-    <h1>Team</h1>
+  <div class="w-full text-white">
+    <div class="container mx-auto max-w-7xl px-5">
+      
+    </div>
   </div>
 </template>
 

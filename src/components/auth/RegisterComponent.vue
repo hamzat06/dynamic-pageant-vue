@@ -8,7 +8,7 @@
       />
     </div>
     <p class="text-xl text-primary text-center font-bold">
-      Register an account"
+      Register an account
     </p>
     <a
       href="#"
@@ -55,6 +55,7 @@
         placeholder="johndoe@email.com"
         aria-label="email"
         autocomplete="email"
+        v-model="userData.email"
       />
     </div>
     <div class="mt-4">
@@ -65,6 +66,7 @@
         placeholder="password"
         aria-label="password"
         autocomplete="password"
+        v-model="userData.password"
       />
     </div>
     <div class="mt-4">
@@ -75,13 +77,14 @@
         class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
         type="password"
         placeholder="confirm password"
-        aria-label="password"
-        autocomplete="password"
+        aria-label="confirm-password"
+        v-model="userData.confirmPassword"
       />
     </div>
     <div class="mt-8">
       <button
         class="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600"
+        @click="registerContestant"
       >
         Register
       </button>
@@ -95,3 +98,52 @@
     </div>
   </div>
 </template>
+
+<script>
+import { createUserWithEmailAndPassword } from "@firebase/auth";
+import { addDoc } from "firebase/firestore/lite";
+import { auth, colRef } from "../../firebase";
+
+export default {
+  name: "RegisterComponent",
+  data: () => ({
+    userData: {
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+  }),
+  methods: {
+    registerContestant() {
+      if (this.userData.password === this.userData.confirmPassword) {
+        this.$store.dispatch("startLoader");
+        createUserWithEmailAndPassword(
+          auth,
+          this.userData.email,
+          this.userData.password
+        )
+          .then((userCredential) => {
+            addDoc(colRef, {
+              id: userCredential.user.uid,
+              email: userCredential.user.email,
+            });
+            this.$store.dispatch("setCurrentUser", userCredential.user);
+          })
+          .then(() => {
+            this.$router.push("/dashboard");
+            this.$store.dispatch("dataAlert", "Account Successfully created");
+            this.$store.dispatch("setAlertType", "success");
+          })
+          .catch((error) => {
+            this.$store.dispatch("dataAlert", error.message);
+            this.$store.dispatch("setAlertType", "error");
+          })
+          .finally(() => this.$store.dispatch("stopLoader"));
+      } else {
+        this.$store.dispatch("dataAlert", "Passwords do not match!");
+        this.$store.dispatch("setAlertType", "error");
+      }
+    },
+  },
+};
+</script>

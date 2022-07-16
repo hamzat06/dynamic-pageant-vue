@@ -75,9 +75,7 @@
           <div
             class="text-base md:text-lg font-semibold p-10 leading-relaxed md:leading-loose"
           >
-            <h2
-              class="font-bold text-secondary text-2xl md:text-3xl mb-10 hidden md:block"
-            >
+            <h2 class="font-bold text-secondary text-2xl md:text-3xl mb-10 hidden md:block">
               OUR VISION
             </h2>
             <p class="mb-5 md:mb-8">
@@ -190,10 +188,10 @@
           </div>
         </div>
       </div>
-      <div class="text-white flex flex-col md:flex-row-reverse py-20 md:py-0">
-        <h2
-          class="font-bold text-secondary text-3xl mb-10 md:hidden text-center"
-        >
+      <div
+        class="text-white flex flex-col md:flex-row-reverse py-20 md:py-0"
+      >
+        <h2 class="font-bold text-secondary text-3xl mb-10 md:hidden text-center">
           TARGET AUDIENCE
         </h2>
         <div class="md:basis-1/2 px-10 md:px-0">
